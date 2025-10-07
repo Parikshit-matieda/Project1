@@ -27,8 +27,6 @@ try {
   $stmt = $pdo->prepare('INSERT INTO users (email, password_hash) VALUES (:email, :hash)');
   $stmt->execute([':email' => $email, ':hash' => $hash]);
   $_SESSION['user'] = [ 'id' => $pdo->lastInsertId(), 'email' => $email ];
-  // Send welcome email (logged or mailed depending on MAIL_MODE)
-  send_mail_or_log($email, 'Welcome to LearnLite', 'Your account was created successfully.');
   send_json([ 'success' => true ]);
 } catch (PDOException $e) {
   if ($e->getCode() === '23000') { // duplicate

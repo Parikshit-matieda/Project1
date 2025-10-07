@@ -24,8 +24,6 @@ try {
     send_json([ 'error' => 'Invalid credentials' ], 401);
   }
   $_SESSION['user'] = [ 'id' => $user['id'], 'email' => $user['email'] ];
-  // Send login notification (logged or mailed depending on MAIL_MODE)
-  send_mail_or_log($email, 'New login to LearnLite', 'A new login to your account was detected.');
   send_json([ 'success' => true ]);
 } catch (Throwable $e) {
   send_json([ 'error' => 'Database error: ' . $e->getMessage() ], 500);

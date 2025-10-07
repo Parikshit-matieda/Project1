@@ -34,25 +34,6 @@ function send_json($data, int $status = 200): void {
   exit;
 }
 
-// Basic mail configuration: 'log' or 'mail'
-$MAIL_MODE = getenv('MAIL_MODE') ?: 'log'; // 'log' file, 'mail' php mail(), 'smtp' PHPMailer
-$MAIL_LOG_FILE = __DIR__ . '/../mail.log';
-
-function send_mail_or_log(string $to, string $subject, string $body): bool {
-  global $MAIL_MODE, $MAIL_LOG_FILE;
-  if ($MAIL_MODE === 'mail') {
-    $headers = 'From: no-reply@localhost' . "\r\n" . 'Content-Type: text/plain; charset=UTF-8';
-    return @mail($to, $subject, $body, $headers);
-  }
-  if ($MAIL_MODE === 'smtp') {
-    require_once __DIR__ . '/mailer.php';
-    return smtp_send_mail($to, $subject, $body);
-  }
-  // default: log to file for local testing
-  $line = '[' . date('c') . "] TO:" . $to . " SUBJECT:" . $subject . " BODY:" . str_replace(["\r", "\n"], ' ', $body) . "\n";
-  return (bool)@file_put_contents($MAIL_LOG_FILE, $line, FILE_APPEND);
-}
-
 ?>
 
 
