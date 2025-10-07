@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LearnLite Courses</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>LearnLite</h1>
+        <p class="tagline">Simple courses. Lightweight learning.</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="card">
+        <h2>Courses</h2>
+        <div id="courses-empty" class="muted" style="display:none;">No courses yet. Add one below.</div>
+        <ul id="courses-list" class="course-list"></ul>
+      </section>
+
+      <section class="card">
+        <h2>Add a Course</h2>
+        <form id="course-form">
+          <label>
+            Title
+            <input id="title" name="title" type="text" required placeholder="e.g. HTML Basics">
+          </label>
+          <label>
+            Description
+            <textarea id="description" name="description" rows="4" placeholder="Short description (optional)"></textarea>
+          </label>
+          <button type="submit">Add Course</button>
+          <span id="form-status" class="form-status" aria-live="polite"></span>
+        </form>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">LearnLite • HTML/CSS/JS + PHP (PDO) + MySQL (XAMPP)</div>
+    </footer>
+
+    <script src="assets/script.js"></script>
+  </body>
+  </html>
+
+

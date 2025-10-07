@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LearnLite • Sign Up</title>
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>LearnLite</h1>
+        <p class="tagline">Create an account to add courses</p>
+      </div>
+    </header>
+    <main class="container">
+      <section class="card">
+        <form id="signup-form">
+          <label>
+            Email
+            <input id="email" name="email" type="email" required placeholder="you@example.com">
+          </label>
+          <label>
+            Password
+            <input id="password" name="password" type="password" required>
+          </label>
+          <button type="submit">Create Account</button>
+          <span id="form-status" class="form-status" aria-live="polite"></span>
+        </form>
+        <div style="margin-top:12px;">
+          Already have an account? <a href="login.html">Login</a>
+        </div>
+      </section>
+    </main>
+    <script>
+      (function(){
+        const form = document.getElementById('signup-form');
+        const statusEl = document.getElementById('form-status');
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          statusEl.textContent = 'Creating account...';
+          const email = document.getElementById('email').value.trim();
+          const password = document.getElementById('password').value;
+          try {
+            const res = await fetch('php/signup.php', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, password })
+            });
+            const out = await res.json();
+            if (res.ok && out && out.success) {
+              statusEl.textContent = 'Success! Redirecting...';
+              location.href = 'index.html';
+            } else {
+              statusEl.textContent = out.error || 'Signup failed';
+            }
+          } catch (err) {
+            statusEl.textContent = 'Network or server error';
+          }
+        });
+      })();
+    </script>
+  </body>
+  </html>
+
+

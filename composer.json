@@ -1,0 +1,14 @@
+{
+  "name": "learnlite/site",
+  "description": "Basic course site with PHP + MySQL + PHPMailer",
+  "require": {
+    "phpmailer/phpmailer": "^6.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "": "php/"
+    }
+  }
+}
+
+
