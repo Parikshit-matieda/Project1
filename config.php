@@ -2,7 +2,7 @@
 
 // ✅ LIVE InfinityFree Database Credentials
 $DB_HOST = 'sql104.infinityfree.com';
-$DB_PORT = '3306';
+$DB_PORT = '06';
 $DB_NAME = 'if0_40115729_crudoperation';
 $DB_USER = 'if0_40115729';
 $DB_PASS = 'acafe2dxGlunCUI';  // ✅ Your actual vPanel password
